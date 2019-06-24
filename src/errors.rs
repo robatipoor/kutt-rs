@@ -5,8 +5,6 @@ pub type Result<T = ()> = StdResult<T, Error>;
 
 #[derive(Debug, Fail)]
 pub enum Error {
-    #[fail(display = "parse error")]
-    ParseError,
     #[fail(display = "stdin error")]
     StdinError,
     #[fail(display = "Send Requset error")]

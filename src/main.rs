@@ -21,24 +21,52 @@ fn main() {
     let app = AppArgs::get_app_args();
     if let Some(key) = app.login {
         ApiKey::set(&*key).unwrap();
-        println!("{}", "ok success login");
+        println!("ok success login !");
         return;
     }
     if let Some(link) = app.delete {
-        Kutt::delete_link(link.as_str());
-        println!("{}", "ok success delete");
+        match Kutt::delete_link(link.as_str()) {
+            Ok(_) => println!("ok deleted !"),
+            Err(e) => fatal!(e),
+        }
         return;
     }
     if app.target_url.is_some() && app.custom_url.is_some() && app.password.is_some() {
-        println!("{}", "ok success delete");
+        match Kutt::target_url(app.target_url.unwrap().as_str())
+            .reuse()
+            .custom_url(app.custom_url.unwrap().as_str())
+            .password(app.password.unwrap().as_str())
+            .create_short_link()
+        {
+            Ok(o) => println!("{}", o),
+            Err(e) => fatal!(e),
+        }
         return;
     } else if app.target_url.is_some() && app.custom_url.is_some() {
-
+        match Kutt::target_url(app.target_url.unwrap().as_str())
+            .reuse()
+            .custom_url(app.custom_url.unwrap().as_str())
+            .create_short_link()
+        {
+            Ok(o) => println!("{}", o),
+            Err(e) => fatal!(e),
+        }
+        return;
     } else if app.target_url.is_some() {
-
+        match Kutt::target_url(app.target_url.unwrap().as_str())
+            .reuse()
+            .create_short_link()
+        {
+            Ok(o) => println!("{}", o),
+            Err(e) => fatal!(e),
+        }
+        return;
     }
-    println!(
-        "{:?}",
-        Kutt::target_url(read_from_stdin().unwrap().as_str()).create_short_link()
-    );
+    match read_from_stdin() {
+        Ok(link) => match Kutt::target_url(link.as_str()).reuse().create_short_link() {
+            Ok(o) => println!("{}", o),
+            Err(e) => fatal!(e),
+        },
+        Err(e) => fatal!(e),
+    }
 }

@@ -2,21 +2,12 @@ use crate::constants::*;
 use crate::errors::{Error, Result};
 use crate::utils::get_id_from_link;
 use reqwest::Client;
-use std::iter::Iterator;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ListLinks {
     pub list: Vec<Link>,
     #[serde(rename = "countAll")]
     pub count_all: u32,
-}
-
-impl Iterator for ListLinks {
-    type Item = Link;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        self.list.iter().next().map(|i| i.clone())
-    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -112,9 +103,8 @@ impl Kutt {
             Err(Error::UnsuccessResponseError)
         }
     }
-
+    #[allow(dead_code)]
     pub fn list_links() -> Result<ListLinks> {
-        println!("{}", &*KUTT_API_KEY.as_str());
         let resp: ListLinks = Client::new()
             .get(&format!("{}/{}", BASE_URL, "api/url/geturls"))
             .header("X-API-Key", &*KUTT_API_KEY.as_str())

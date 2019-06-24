@@ -19,7 +19,7 @@ impl AppArgs {
             .arg(
                 Arg::with_name("target-url")
                     .short("t")
-                    .long("target")
+                    .long("target-url")
                     .value_name("URL")
                     .help("Set a url")
                     .takes_value(true),
@@ -27,9 +27,9 @@ impl AppArgs {
             .arg(
                 Arg::with_name("custom-url")
                     .short("c")
-                    .long("create")
-                    .value_name("PATHFILE")
-                    .help("Set a path text file")
+                    .long("custom-url")
+                    .value_name("DOMAIN")
+                    .help("Set a domain name")
                     .takes_value(true),
             )
             .arg(
@@ -52,8 +52,8 @@ impl AppArgs {
                 Arg::with_name("login")
                     .short("l")
                     .long("login")
-                    .value_name("API-KEY")
-                    .help("Set a API-KEY")
+                    .value_name("API_KEY")
+                    .help("Set a apikey")
                     .takes_value(true),
             )
             .get_matches();
@@ -74,6 +74,6 @@ impl AppArgs {
         if let Some(p) = matches.value_of("password") {
             app_args.password = Some(p.to_owned());
         }
-        return app_args;
+        app_args
     }
 }

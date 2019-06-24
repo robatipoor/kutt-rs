@@ -6,6 +6,9 @@ use kutt::{Kutt, ListLinks};
 
 fn main() {
     dotenv().ok(); // save KUTT_API_KEY to .env file
-    let res: ListLinks = Kutt::list_links().unwrap();
-    println!("{:#?}", res);
+    let result: ListLinks = Kutt::list_links().unwrap();
+    for link in result.list {
+        println!("{:#?}", link);
+    }
+    // println!("{:#?}", result);
 }

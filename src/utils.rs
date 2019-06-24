@@ -11,7 +11,7 @@ macro_rules! fatal {
         std::process::exit(1)
     }};
 }
-
+#[allow(dead_code)]
 pub fn read_from_stdin() -> Result<String> {
     std::io::stdin()
         .lock()
@@ -38,9 +38,9 @@ pub fn read_file<P: AsRef<Path>>(path: P) -> Result<String> {
         eprintln!("{}", e);
         Error::ReadToStringError
     })?;;;
-    return Ok(buf);
+    Ok(buf)
 }
-
+#[allow(dead_code)]
 pub fn write_file<P: AsRef<Path>>(path: P, s: &str) -> Result {
     let mut file: File = File::create(path).map_err(|e| {
         eprintln!("{}", e);
