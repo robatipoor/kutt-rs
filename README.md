@@ -2,7 +2,7 @@
 [![Crates.io](https://img.shields.io/crates/v/kutt.svg?style=plastic)](http://crates.io/crates/kutt)
 [![Build Status](https://travis-ci.org/robatipoor/kutt-rs.svg?branch=master)](https://travis-ci.org/robatipoor/kutt-rs)
 [![Build status](https://ci.appveyor.com/api/projects/status/g1sii8fby1it2jja/branch/master?svg=true)](https://ci.appveyor.com/project/robatipoor/kutt-rs/branch/master)
-[![License](https://img.shields.io/crates/l/kutt.svg)](https://crates.io/crates/kutt/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ### work in progress
 Command line tool for [kutt.it](https://kutt.it)
 
