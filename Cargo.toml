@@ -3,11 +3,11 @@ name = "kutt"
 version = "0.0.1"
 authors = ["mahdi <mahdi.robatipoor@gmail.com>"]
 edition = "2018"
-description = "cli for kutt "
-homepage = "https://github.com/robatipoor/kutt-cli"
-keywords = ["command", "shortlink","kutt","cli","url","link"]
-license = "MIT/Apache-2.0"
-repository = "https://github.com/robatipoor/kutt-cli"
+description = "command line tool for kutt.it service"
+homepage = "https://github.com/robatipoor/kutt-rs"
+keywords = ["command-line", "shortlink","kutt","url"]
+license = "MIT"
+repository = "https://github.com/robatipoor/kutt-rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
