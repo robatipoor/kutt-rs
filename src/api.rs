@@ -79,7 +79,6 @@ impl Kutt {
                 eprintln!("{}", e);
                 Error::ParseJsonError
             })?;
-        println!("{:#?}", response);
         Ok(response.short_url)
     }
     pub fn delete_link(short_link: &str) -> Result {

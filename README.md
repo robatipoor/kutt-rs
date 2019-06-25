@@ -28,12 +28,24 @@ OPTIONS:
     -p, --password <PASSWORD>    Set a password
     -t, --target-url <URL>       Set a url
 ```
+## set apikey
+```sh
+kutt --login your-api-key
+# or
+export KUTT_API_KEY="your-api-key"
+```
+## example 
+```sh
+kutt --target-url https://github.com/ --custom-url your-domain
+# or
+echo "https://github.com/" | kutt -c your-domain
+```
 
 ## How to use crate
 ```sh
 cargo add kutt
 ```
-```rs
+```rust
 extern crate dotenv;
 extern crate kutt;
 

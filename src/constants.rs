@@ -10,5 +10,6 @@ pub const API_KEY_FILE_NAME: &str = ".kutt-api-key.txt";
 pub const API_KEY_FILE_NAME: &str = "kutt-api-key.txt";
 lazy_static! {
     pub static ref PATH_FILE_API_KEY: PathBuf = home_dir().unwrap().join(API_KEY_FILE_NAME);
-    pub static ref KUTT_API_KEY: String = ApiKey::get().unwrap();
+    pub static ref KUTT_API_KEY: String = ApiKey::get()
+        .expect("you need to login with your api-key or set KUTT_API_KEY environment variable !");
 }

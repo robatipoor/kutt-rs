@@ -63,10 +63,23 @@ fn main() {
         return;
     }
     match read_from_stdin() {
-        Ok(link) => match Kutt::target_url(link.as_str()).reuse().create_short_link() {
-            Ok(o) => println!("{}", o),
-            Err(e) => fatal!(e),
-        },
+        Ok(link) => {
+            if app.custom_url.is_some() {
+                match Kutt::target_url(link.as_str())
+                    .reuse()
+                    .custom_url(app.custom_url.unwrap())
+                    .create_short_link()
+                {
+                    Ok(o) => println!("{}", o),
+                    Err(e) => fatal!(e),
+                }
+            } else {
+                match Kutt::target_url(link.as_str()).reuse().create_short_link() {
+                    Ok(o) => println!("{}", o),
+                    Err(e) => fatal!(e),
+                }
+            }
+        }
         Err(e) => fatal!(e),
     }
 }
