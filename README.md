@@ -1,18 +1,31 @@
-# client short link Kutt
+### Command line tool for [kutt.it](https://kutt.it)
 [![Crates.io](https://img.shields.io/crates/v/kutt.svg?style=plastic)](http://crates.io/crates/kutt)
 [![Build Status](https://travis-ci.org/robatipoor/kutt-rs.svg?branch=master)](https://travis-ci.org/robatipoor/kutt-rs)
 [![Build status](https://ci.appveyor.com/api/projects/status/g1sii8fby1it2jja/branch/master?svg=true)](https://ci.appveyor.com/project/robatipoor/kutt-rs/branch/master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ### work in progress
-Command line tool for [kutt.it](https://kutt.it)
 
-**install**
-
+### Install
 ```sh
 cargo install kutt
 ```
-## Usage command line
 
+### Set apikey
+```sh
+kutt --login your-api-key
+# or
+export KUTT_API_KEY='your-api-key'
+```
+
+### Example 
+```sh
+kutt --target-url https://github.com/ --custom-url your-domain
+# or
+echo 'https://github.com/' | kutt -c your-domain
+```
+
+### Usage command line
 ```sh
 USAGE:
     kutt [OPTIONS]
@@ -28,20 +41,8 @@ OPTIONS:
     -p, --password <PASSWORD>    Set a password
     -t, --target-url <URL>       Set a url
 ```
-## set apikey
-```sh
-kutt --login your-api-key
-# or
-export KUTT_API_KEY="your-api-key"
-```
-## example 
-```sh
-kutt --target-url https://github.com/ --custom-url your-domain
-# or
-echo "https://github.com/" | kutt -c your-domain
-```
 
-## How to use crate
+### How to use crate
 ```sh
 cargo add kutt
 ```
@@ -53,7 +54,7 @@ use dotenv::dotenv;
 use kutt::Kutt;
 
 fn main() {
-    dotenv().ok(); // read KUTT_API_KEY in .env file/
+    dotenv().ok(); // read KUTT_API_KEY in .env file
     let slink = Kutt::target_url("https://addr-example...")
         .custom_url("custom-url")
         .create_short_link()
